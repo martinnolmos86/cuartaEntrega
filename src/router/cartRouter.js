@@ -1,12 +1,39 @@
 import express from "express";
+import { cartManagar } from "../main.js";
 
 export const cartsRouter = express.Router();
 
-cartsRouter.get("/carts");
+// Creamos el nuevo carrito
 
-cartsRouter.get("/", (req, res) => {
-  // Lógica para obtener los carritos
-  res.send("Estamos en el cartRouter");
+cartsRouter.post("/", async (req, res) => {
+  try {
+    const data = await cartManagar.newCart();
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+cartsRouter.get("/:cid", async (req, res) => {
+  const { cid } = req.params;
+  try {
+    const data = await cartManagar.getCartProducts(cid);
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Agregar un producto al Carrito
+
+cartsRouter.post("/:cid/product/:pid", async (req, res) => {
+  const { cid, pid } = req.params;
+  try {
+    await cartManagar.addProduct(cid, pid);
+    res.send("Agregado exitosamente");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export default cartsRouter;
