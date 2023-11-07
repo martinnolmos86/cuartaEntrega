@@ -106,17 +106,4 @@ export class ProductManager {
 
     await fs.writeFile(this.path, JSON.stringify(data));
   }
-
-  // deleteProduct = async (id) => {
-  //   const response = await this.getProduct();
-
-  //   const index = response.findIndex((product) => product.id === id);
-
-  //   if (index !== -1) {
-  //     response.splice(index, 1);
-  //     await fs.writeFile(this.path, JSON.stringify(response));
-  //   } else {
-  //     console.log("producto no encontrado");
-  //   }
-  // };
 }
