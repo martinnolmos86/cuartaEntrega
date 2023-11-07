@@ -16,6 +16,8 @@ export class CartManager {
     return dataJson;
   };
 
+  //   Metodo para buscar un carrito por id
+
   getCartProducts = async (id) => {
     const allCarts = await this.getCart();
     const cart = allCarts.find((cart) => cart.id === id);

@@ -14,6 +14,8 @@ cartsRouter.post("/", async (req, res) => {
   }
 });
 
+// Listamos los productos con el id del carrito
+
 cartsRouter.get("/:cid", async (req, res) => {
   const { cid } = req.params;
   try {
